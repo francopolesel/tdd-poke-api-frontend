@@ -19,9 +19,12 @@ describe('GenerationSelect', () => {
 
     // Opción por defecto "Todas"
     expect(screen.getByText(/todas/i)).toBeInTheDocument();
-    expect(screen.getByText(/generation-i/i)).toBeInTheDocument();
-    expect(screen.getByText(/generation-ii/i)).toBeInTheDocument();
-    expect(screen.getByText(/generation-iii/i)).toBeInTheDocument();
+    // Usamos getAllByText porque los regex de generación matchean múltiples opciones
+    const opciones = select.querySelectorAll('option');
+    const valores = [...opciones].map((o) => o.value);
+    expect(valores).toContain('generation-i');
+    expect(valores).toContain('generation-ii');
+    expect(valores).toContain('generation-iii');
   });
 
   test('dispara onChange al seleccionar una generación', async () => {

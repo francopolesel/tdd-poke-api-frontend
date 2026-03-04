@@ -154,9 +154,9 @@ describe('Integration: filtrar por tipo + generación', () => {
     expect(screen.getByLabelText(/tipo/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/generación/i)).toBeInTheDocument();
 
-    // Verificar opciones de tipo
-    expect(screen.getByText(/fire/i)).toBeInTheDocument();
-    expect(screen.getByText(/water/i)).toBeInTheDocument();
+    // Verificar opciones de tipo (puede aparecer en cards y en select, usamos getAllByText)
+    expect(screen.getAllByText(/fire/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/water/i).length).toBeGreaterThanOrEqual(1);
   });
 
   test('al seleccionar tipo "fire", solo se muestran pokémon de fuego', async () => {

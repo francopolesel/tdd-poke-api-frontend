@@ -6,8 +6,8 @@
  * Ej: "pikachu" → "Pikachu"
  */
 export function capitalizar(str) {
-  // TODO: implementar
-  return str;
+  if (!str) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 /**
@@ -15,6 +15,5 @@ export function capitalizar(str) {
  * Ej: 1 → "#001", 25 → "#025", 150 → "#150"
  */
 export function formatearNumero(num) {
-  // TODO: implementar
-  return `${num}`;
+  return `#${String(num).padStart(3, '0')}`;
 }
