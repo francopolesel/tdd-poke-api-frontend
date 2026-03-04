@@ -1,0 +1,237 @@
+/* src/styles/App.css — Estilos de la Pokédex Argentina */
+
+/* === Reset & Base === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+/* === App === */
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.app__header {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.app__header h1 {
+  font-size: 2.5rem;
+  color: #ffcb05;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.app__subtitle {
+  font-size: 1.1rem;
+  color: #a0c4ff;
+}
+
+/* === Filtros === */
+.app__filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.search-input__field {
+  padding: 0.6rem 1rem;
+  border: 2px solid #3a86ff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  font-size: 1rem;
+  width: 280px;
+  transition: border-color 0.3s;
+}
+
+.search-input__field::placeholder {
+  color: #8899aa;
+}
+
+.search-input__field:focus {
+  outline: none;
+  border-color: #ffcb05;
+}
+
+.type-select label,
+.generation-select label {
+  display: block;
+  font-size: 0.85rem;
+  color: #a0c4ff;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.type-select select,
+.generation-select select {
+  padding: 0.6rem 1rem;
+  border: 2px solid #3a86ff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.type-select select:focus,
+.generation-select select:focus {
+  outline: none;
+  border-color: #ffcb05;
+}
+
+.type-select select option,
+.generation-select select option {
+  background: #16213e;
+  color: #e0e0e0;
+}
+
+/* === Loading & Error === */
+.app__loading,
+.app__error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+}
+
+.app__loading p {
+  color: #ffcb05;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.app__error p {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* === Pokemon List === */
+.pokemon-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.2rem;
+  padding: 0.5rem;
+}
+
+.pokemon-list__vacio {
+  text-align: center;
+  color: #a0c4ff;
+  font-size: 1.1rem;
+  padding: 3rem;
+  grid-column: 1 / -1;
+}
+
+/* === Pokemon Card === */
+.pokemon-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.2rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pokemon-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(58, 134, 255, 0.3);
+}
+
+.pokemon-card__img {
+  width: 120px;
+  height: 120px;
+  image-rendering: pixelated;
+  margin-bottom: 0.5rem;
+}
+
+.pokemon-card__placeholder {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  color: #8899aa;
+  font-size: 0.8rem;
+}
+
+.pokemon-card__nombre {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
+}
+
+.pokemon-card__id {
+  font-size: 0.85rem;
+  color: #8899aa;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.pokemon-card__tipos {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pokemon-card__tipo {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  background: rgba(58, 134, 255, 0.3);
+  color: #a0c4ff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* === Responsive === */
+@media (max-width: 640px) {
+  .app__header h1 {
+    font-size: 1.8rem;
+  }
+
+  .app__filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input__field {
+    width: 100%;
+  }
+
+  .pokemon-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}

@@ -1,5 +1,6 @@
 // src/components/App.jsx
 import { useState, useEffect, useCallback } from 'react';
+import '../styles/App.css';
 import {
   getTypes,
   getGenerations,
