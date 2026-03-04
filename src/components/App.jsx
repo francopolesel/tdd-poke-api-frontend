@@ -13,6 +13,7 @@ import TypeSelect from './TypeSelect';
 import GenerationSelect from './GenerationSelect';
 import SearchInput from './SearchInput';
 import PokemonList from './PokemonList';
+import Pagination from './Pagination';
 
 export default function App() {
   const [tipos, setTipos] = useState([]);
@@ -23,6 +24,8 @@ export default function App() {
   const [textoBusqueda, setTextoBusqueda] = useState('');
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const [paginaActual, setPaginaActual] = useState(1);
+  const POKEMON_POR_PAGINA = 20;
 
   // Carga inicial: tipos, generaciones y pokémon base
   useEffect(() => {
@@ -118,19 +121,30 @@ export default function App() {
   // Filtrado local por texto de búsqueda
   const pokemonFiltrados = filtrarPorBusqueda(pokemon, textoBusqueda);
 
+  // Paginación
+  const totalPaginas = Math.ceil(pokemonFiltrados.length / POKEMON_POR_PAGINA);
+  const inicio = (paginaActual - 1) * POKEMON_POR_PAGINA;
+  const pokemonPaginados = pokemonFiltrados.slice(inicio, inicio + POKEMON_POR_PAGINA);
+
   const handleTipoChange = (tipo) => {
     setTipoSeleccionado(tipo);
+    setPaginaActual(1);
     if (tipo === '') {
-      // Resetear: volver a cargar todo
       cargarFiltrados();
     }
   };
 
   const handleGeneracionChange = (gen) => {
     setGeneracionSeleccionada(gen);
+    setPaginaActual(1);
     if (gen === '') {
       cargarFiltrados();
     }
+  };
+
+  const handleSearch = (texto) => {
+    setTextoBusqueda(texto);
+    setPaginaActual(1);
   };
 
   return (
@@ -144,7 +158,7 @@ export default function App() {
 
       <main className="app__main">
         <section className="app__filtros">
-          <SearchInput onSearch={setTextoBusqueda} />
+          <SearchInput onSearch={handleSearch} />
           <TypeSelect tipos={tipos} onChange={handleTipoChange} />
           <GenerationSelect
             generaciones={generaciones}
@@ -164,7 +178,14 @@ export default function App() {
             </div>
           )}
           {!cargando && !error && (
-            <PokemonList pokemon={pokemonFiltrados} />
+            <>
+              <PokemonList pokemon={pokemonPaginados} />
+              <Pagination
+                paginaActual={paginaActual}
+                totalPaginas={totalPaginas}
+                onCambiarPagina={setPaginaActual}
+              />
+            </>
           )}
         </section>
       </main>

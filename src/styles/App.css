@@ -232,4 +232,95 @@ body {
   .pokemon-list {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
+
+  .pagination {
+    gap: 0.5rem;
+  }
+
+  .pagination__btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .pagination__numeros {
+    gap: 0.2rem;
+  }
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.pagination__btn {
+  padding: 0.5rem 1.2rem;
+  border: 2px solid #3a86ff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #a0c4ff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.pagination__btn:hover:not(:disabled) {
+  background: rgba(58, 134, 255, 0.3);
+  border-color: #ffcb05;
+  color: #ffcb05;
+}
+
+.pagination__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination__numeros {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.pagination__numero {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #a0c4ff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.pagination__numero:hover {
+  background: rgba(58, 134, 255, 0.2);
+  border-color: #3a86ff;
+}
+
+.pagination__numero--activo {
+  background: rgba(58, 134, 255, 0.4);
+  border-color: #ffcb05;
+  color: #ffcb05;
+}
+
+.pagination__ellipsis {
+  color: #8899aa;
+  padding: 0 0.3rem;
+  font-size: 1rem;
+}
+
+.pagination__info {
+  color: #8899aa;
+  font-size: 0.85rem;
 }
