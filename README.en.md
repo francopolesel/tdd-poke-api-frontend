@@ -15,6 +15,7 @@ Testing Library.
 ## Stack
 
 - React 18 + Vite
+- Axios (configured instance in `services/`)
 - Jest + React Testing Library + jest-environment-jsdom
 - ESLint + Prettier
 - Vanilla CSS
@@ -83,8 +84,9 @@ npm run test:ci     # sequential, for pipelines
 
 ```
 src/
-├── api/
-│   └── pokeApi.js
+├── services/
+│   ├── axiosInstance.js
+│   └── pokeService.js
 ├── components/
 │   ├── App.jsx
 │   ├── TypeSelect.jsx

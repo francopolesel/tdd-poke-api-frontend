@@ -2,20 +2,20 @@ import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../components/App';
 
+jest.mock('../services/axiosInstance', () => ({
+  __esModule: true,
+  default: { get: jest.fn() },
+}));
+
 describe('Error state', () => {
   beforeEach(() => {
-    // Mockeamos fetch para que falle
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        ok: false,
-        status: 500,
-        json: () => Promise.resolve({}),
-      }),
-    );
+    const pokeApi = require('../services/axiosInstance').default;
+    // Mockeamos get para que falle
+    pokeApi.get.mockRejectedValue(new Error('Request failed with status code 500'));
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   test('muestra mensaje de error amigable cuando la API falla', async () => {

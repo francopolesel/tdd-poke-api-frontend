@@ -2,8 +2,14 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import App from '../components/App';
+import pokeApi from '../services/axiosInstance';
 
-// Helper: crea mock responses
+jest.mock('../services/axiosInstance', () => ({
+  __esModule: true,
+  default: { get: jest.fn() },
+}));
+
+// Helper: mock data
 const mockTypesResponse = {
   results: [
     { name: 'fire', url: 'https://pokeapi.co/api/v2/type/10/' },
@@ -62,70 +68,44 @@ const mockGenIResponse = {
 };
 
 /**
- * Helper para mockear fetch basado en la URL solicitada.
+ * Helper para mockear pokeApi.get basado en la URL solicitada.
  */
-function setupFetchMock() {
-  global.fetch = jest.fn((url) => {
-    if (url === 'https://pokeapi.co/api/v2/type') {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockTypesResponse),
-      });
+function setupAxiosMock() {
+  pokeApi.get.mockImplementation((url) => {
+    if (url === '/type') {
+      return Promise.resolve({ data: mockTypesResponse });
     }
-    if (url === 'https://pokeapi.co/api/v2/generation') {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockGenerationsResponse),
-      });
+    if (url === '/generation') {
+      return Promise.resolve({ data: mockGenerationsResponse });
     }
-    if (url === 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0') {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockPokemonListResponse),
-      });
+    if (url === '/pokemon') {
+      return Promise.resolve({ data: mockPokemonListResponse });
     }
-    if (url === 'https://pokeapi.co/api/v2/pokemon/charmander') {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockCharmander),
-      });
+    if (url === '/pokemon/charmander') {
+      return Promise.resolve({ data: mockCharmander });
     }
-    if (url === 'https://pokeapi.co/api/v2/pokemon/squirtle') {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockSquirtle),
-      });
+    if (url === '/pokemon/squirtle') {
+      return Promise.resolve({ data: mockSquirtle });
     }
-    if (url === 'https://pokeapi.co/api/v2/pokemon/pikachu') {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockPikachu),
-      });
+    if (url === '/pokemon/pikachu') {
+      return Promise.resolve({ data: mockPikachu });
     }
-    if (url === 'https://pokeapi.co/api/v2/type/fire') {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockFireTypeResponse),
-      });
+    if (url === '/type/fire') {
+      return Promise.resolve({ data: mockFireTypeResponse });
     }
-    if (url === 'https://pokeapi.co/api/v2/generation/1') {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockGenIResponse),
-      });
+    if (url === '/generation/1') {
+      return Promise.resolve({ data: mockGenIResponse });
     }
     // Default: pokémon detail fallback
-    if (url.startsWith('https://pokeapi.co/api/v2/pokemon/')) {
+    if (url.startsWith('/pokemon/')) {
       const name = url.split('/').filter(Boolean).pop();
       return Promise.resolve({
-        ok: true,
-        json: () =>
-          Promise.resolve({
-            id: 999,
-            name,
-            types: [{ type: { name: 'normal' } }],
-            sprites: { front_default: null },
-          }),
+        data: {
+          id: 999,
+          name,
+          types: [{ type: { name: 'normal' } }],
+          sprites: { front_default: null },
+        },
       });
     }
     return Promise.reject(new Error(`URL no mockeada: ${url}`));
@@ -134,11 +114,11 @@ function setupFetchMock() {
 
 describe('Integration: filtrar por tipo + generación', () => {
   beforeEach(() => {
-    setupFetchMock();
+    setupAxiosMock();
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   test('carga inicial muestra pokémon, tipos y generaciones en los selects', async () => {

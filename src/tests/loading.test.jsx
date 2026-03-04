@@ -2,16 +2,20 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../components/App';
 
+jest.mock('../services/axiosInstance', () => ({
+  __esModule: true,
+  default: { get: jest.fn() },
+}));
+
 describe('Loading state', () => {
   beforeEach(() => {
-    // Mockeamos fetch para que nunca resuelva (queda en loading)
-    global.fetch = jest.fn(
-      () => new Promise(() => {}), // pending forever
-    );
+    const pokeApi = require('../services/axiosInstance').default;
+    // Mockeamos get para que nunca resuelva (queda en loading)
+    pokeApi.get.mockImplementation(() => new Promise(() => {}));
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   test('muestra el loader al renderizar mientras carga datos', () => {

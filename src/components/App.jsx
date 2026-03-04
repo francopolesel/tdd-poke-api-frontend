@@ -7,7 +7,7 @@ import {
   getPokemonDetail,
   getPokemonsByType,
   getPokemonsByGeneration,
-} from '../api/pokeApi';
+} from '../services/pokeService';
 import { filtrarPorBusqueda } from '../utils/filter';
 import TypeSelect from './TypeSelect';
 import GenerationSelect from './GenerationSelect';

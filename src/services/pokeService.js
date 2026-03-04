@@ -1,15 +1,4 @@
-const BASE_URL = 'https://pokeapi.co/api/v2';
-
-/**
- * Helper interno para hacer fetch y manejar errores.
- */
-async function fetchJSON(url) {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Error al consultar la API: ${response.status}`);
-  }
-  return response.json();
-}
+import pokeApi from './axiosInstance';
 
 /**
  * Obtiene la lista de tipos de pokémon.
@@ -17,7 +6,7 @@ async function fetchJSON(url) {
  * @returns {Promise<Array<{name: string, url: string}>>}
  */
 export async function getTypes() {
-  const data = await fetchJSON(`${BASE_URL}/type`);
+  const { data } = await pokeApi.get('/type');
   return data.results;
 }
 
@@ -27,7 +16,7 @@ export async function getTypes() {
  * @returns {Promise<Array<{name: string, url: string}>>}
  */
 export async function getGenerations() {
-  const data = await fetchJSON(`${BASE_URL}/generation`);
+  const { data } = await pokeApi.get('/generation');
   return data.results;
 }
 
@@ -38,7 +27,7 @@ export async function getGenerations() {
  * @returns {Promise<Array<{name: string, url: string}>>}
  */
 export async function getPokemonsByType(typeName) {
-  const data = await fetchJSON(`${BASE_URL}/type/${typeName}`);
+  const { data } = await pokeApi.get(`/type/${typeName}`);
   return data.pokemon.map((entry) => entry.pokemon);
 }
 
@@ -49,7 +38,7 @@ export async function getPokemonsByType(typeName) {
  * @returns {Promise<Array<{name: string, url: string}>>}
  */
 export async function getPokemonsByGeneration(genId) {
-  const data = await fetchJSON(`${BASE_URL}/generation/${genId}`);
+  const { data } = await pokeApi.get(`/generation/${genId}`);
   return data.pokemon_species;
 }
 
@@ -60,7 +49,8 @@ export async function getPokemonsByGeneration(genId) {
  * @returns {Promise<Object>}
  */
 export async function getPokemonDetail(nameOrId) {
-  return fetchJSON(`${BASE_URL}/pokemon/${nameOrId}`);
+  const { data } = await pokeApi.get(`/pokemon/${nameOrId}`);
+  return data;
 }
 
 /**
@@ -71,8 +61,8 @@ export async function getPokemonDetail(nameOrId) {
  * @returns {Promise<Array<{name: string, url: string}>>}
  */
 export async function getPokemonList(limit = 151, offset = 0) {
-  const data = await fetchJSON(
-    `${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`,
-  );
+  const { data } = await pokeApi.get('/pokemon', {
+    params: { limit, offset },
+  });
   return data.results;
 }

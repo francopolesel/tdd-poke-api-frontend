@@ -15,6 +15,7 @@ Testing Library.
 ## Stack
 
 - React 18 + Vite
+- Axios (instancia configurada en `services/`)
 - Jest + React Testing Library + jest-environment-jsdom
 - ESLint + Prettier
 - CSS vanilla
@@ -90,8 +91,9 @@ git push -u origin main
 
 ```
 src/
-├── api/
-│   └── pokeApi.js
+├── services/
+│   ├── axiosInstance.js
+│   └── pokeService.js
 ├── components/
 │   ├── App.jsx
 │   ├── TypeSelect.jsx
