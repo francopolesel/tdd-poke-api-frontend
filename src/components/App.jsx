@@ -15,6 +15,26 @@ import SearchInput from './SearchInput';
 import PokemonList from './PokemonList';
 import Pagination from './Pagination';
 
+/**
+ * Obtiene detalles de pokémon en lotes para no saturar la API.
+ * Los pokémon que fallen individualmente se omiten.
+ */
+async function fetchDetallesEnLotes(nombres, tamLote = 20) {
+  const resultados = [];
+  for (let i = 0; i < nombres.length; i += tamLote) {
+    const lote = nombres.slice(i, i + tamLote);
+    const resultadosLote = await Promise.allSettled(
+      lote.map((name) => getPokemonDetail(name)),
+    );
+    for (const r of resultadosLote) {
+      if (r.status === 'fulfilled') {
+        resultados.push(r.value);
+      }
+    }
+  }
+  return resultados;
+}
+
 export default function App() {
   const [tipos, setTipos] = useState([]);
   const [generaciones, setGeneraciones] = useState([]);
@@ -40,9 +60,9 @@ export default function App() {
         setTipos(tiposData);
         setGeneraciones(generacionesData);
 
-        // Obtener detalles de cada pokémon
-        const detalles = await Promise.all(
-          pokemonListData.map((p) => getPokemonDetail(p.name)),
+        // Obtener detalles de cada pokémon (en lotes)
+        const detalles = await fetchDetallesEnLotes(
+          pokemonListData.map((p) => p.name),
         );
 
         setPokemon(detalles);
@@ -92,16 +112,13 @@ export default function App() {
       if (pokemonNombres === null) {
         // Sin filtros de tipo/gen: cargar listado normal
         const lista = await getPokemonList();
-        const detalles = await Promise.all(
-          lista.map((p) => getPokemonDetail(p.name)),
+        const detalles = await fetchDetallesEnLotes(
+          lista.map((p) => p.name),
         );
         setPokemon(detalles);
       } else {
         // Con filtros: cargar detalles de los que pasaron
-        const nombres = [...pokemonNombres];
-        const detalles = await Promise.all(
-          nombres.map((name) => getPokemonDetail(name)),
-        );
+        const detalles = await fetchDetallesEnLotes([...pokemonNombres]);
         setPokemon(detalles);
       }
     } catch (err) {
