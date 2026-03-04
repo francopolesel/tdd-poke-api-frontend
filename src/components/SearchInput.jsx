@@ -7,7 +7,7 @@ export default function SearchInput({ onSearch }) {
     <div className="search-input">
       <input
         type="text"
-        placeholder="Buscá un pokémon por nombre o tipo..."
+        placeholder="Buscar por nombre o tipo..."
         onChange={handleChange}
         className="search-input__field"
       />

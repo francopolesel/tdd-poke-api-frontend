@@ -6,7 +6,7 @@ import SearchInput from '../components/SearchInput';
 describe('SearchInput', () => {
   test('renderiza un input de búsqueda con placeholder en español', () => {
     render(<SearchInput onSearch={() => {}} />);
-    const input = screen.getByPlaceholderText(/buscá un pokémon/i);
+    const input = screen.getByPlaceholderText(/buscar por nombre/i);
     expect(input).toBeInTheDocument();
   });
 
@@ -16,7 +16,7 @@ describe('SearchInput', () => {
 
     render(<SearchInput onSearch={handleSearch} />);
 
-    const input = screen.getByPlaceholderText(/buscá un pokémon/i);
+    const input = screen.getByPlaceholderText(/buscar por nombre/i);
     await user.type(input, 'pika');
 
     // Se llama por cada tecla
