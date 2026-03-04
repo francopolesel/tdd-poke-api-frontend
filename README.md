@@ -1,3 +1,5 @@
+🌐 [English](README.en.md)
+
 # Pokédex Frontend — Práctica TDD
 
 Proyecto frontend personal para practicar Test-Driven Development en un contexto React real.
@@ -42,7 +44,7 @@ Base URL: `https://pokeapi.co/api/v2`
 ## Instalación
 
 ```bash
-git clone <URL_REPO>
+git clone https://github.com/francopolesel/tdd-poke-api-frontend.git
 cd pokedex-frontend
 npm install
 npm run dev
@@ -96,7 +98,8 @@ src/
 │   ├── GenerationSelect.jsx
 │   ├── SearchInput.jsx
 │   ├── PokemonList.jsx
-│   └── PokemonCard.jsx
+│   ├── PokemonCard.jsx
+│   └── Pagination.jsx
 ├── utils/
 │   ├── filter.js
 │   └── format.js
