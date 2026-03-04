@@ -1,5 +1,3 @@
-// src/components/SearchInput.jsx
-
 export default function SearchInput({ onSearch }) {
   const handleChange = (e) => {
     onSearch(e.target.value);

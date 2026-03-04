@@ -1,4 +1,3 @@
-// src/components/PokemonCard.jsx
 import { capitalizar, formatearNumero } from '../utils/format';
 
 export default function PokemonCard({ pokemon }) {

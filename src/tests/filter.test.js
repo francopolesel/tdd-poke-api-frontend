@@ -1,8 +1,6 @@
-// Test 9: Filtro por generación — lógica pura (unit)
 import '@testing-library/jest-dom';
 
-// Testeamos la función de filtrado pura
-describe('filtrarPorBusqueda (lógica pura)', () => {
+describe('filtrarPorBusqueda', () => {
   // Importamos la función utilitaria
   let filtrarPorBusqueda;
 

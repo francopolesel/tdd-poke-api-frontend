@@ -2,7 +2,7 @@
   "name": "pokedex-frontend",
   "private": true,
   "version": "1.0.0",
-  "description": "Pokédex / Tienda de Pokémon — Proyecto TDD con React + Vite",
+  "description": "Pokédex frontend — práctica TDD con React + Vite",
   "type": "module",
   "scripts": {
     "dev": "vite",

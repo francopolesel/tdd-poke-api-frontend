@@ -1,6 +1,4 @@
-/* src/styles/App.css — Estilos de la Pokédex Argentina */
-
-/* === Reset & Base === */
+/* Reset & Base */
 *,
 *::before,
 *::after {
@@ -16,7 +14,7 @@ body {
   min-height: 100vh;
 }
 
-/* === App === */
+/* App */
 .app {
   max-width: 1200px;
   margin: 0 auto;
@@ -41,7 +39,7 @@ body {
   color: #a0c4ff;
 }
 
-/* === Filtros === */
+/* Filtros */
 .app__filtros {
   display: flex;
   flex-wrap: wrap;
@@ -108,7 +106,7 @@ body {
   color: #e0e0e0;
 }
 
-/* === Loading & Error === */
+/* Loading & Error */
 .app__loading,
 .app__error {
   text-align: center;
@@ -134,7 +132,7 @@ body {
   display: inline-block;
 }
 
-/* === Pokemon List === */
+/* Pokemon List */
 .pokemon-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -150,7 +148,7 @@ body {
   grid-column: 1 / -1;
 }
 
-/* === Pokemon Card === */
+/* Pokemon Card */
 .pokemon-card {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 16px;
@@ -216,7 +214,7 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* === Responsive === */
+/* Responsive */
 @media (max-width: 640px) {
   .app__header h1 {
     font-size: 1.8rem;

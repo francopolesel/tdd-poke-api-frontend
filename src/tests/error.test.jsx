@@ -1,4 +1,3 @@
-// Test 11: Error state muestra mensaje amigable
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../components/App';
@@ -23,7 +22,7 @@ describe('Error state', () => {
     render(<App />);
     await waitFor(() => {
       expect(
-        screen.getByText(/algo salió mal/i),
+        screen.getByText(/no se pudieron cargar/i),
       ).toBeInTheDocument();
     });
   });

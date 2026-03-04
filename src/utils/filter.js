@@ -1,6 +1,3 @@
-// src/utils/filter.js
-// Funciones de filtrado para la Pokédex
-
 /**
  * Filtra una lista de pokémon por texto de búsqueda.
  * Busca en nombre y en tipos (case insensitive).

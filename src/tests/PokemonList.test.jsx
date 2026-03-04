@@ -1,4 +1,3 @@
-// Test 6: PokemonList renderiza una lista de PokemonCard
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import PokemonList from '../components/PokemonList';

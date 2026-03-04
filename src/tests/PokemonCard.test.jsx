@@ -1,4 +1,3 @@
-// Test 7: PokemonCard muestra nombre, id y tipos
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import PokemonCard from '../components/PokemonCard';

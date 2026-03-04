@@ -1,4 +1,3 @@
-// src/components/TypeSelect.jsx
 import { capitalizar } from '../utils/format';
 
 export default function TypeSelect({ tipos, onChange }) {

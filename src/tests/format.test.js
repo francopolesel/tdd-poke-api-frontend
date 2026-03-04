@@ -1,4 +1,3 @@
-// Test adicional: format.js — capitalizar y formatearNumero
 import { capitalizar, formatearNumero } from '../utils/format';
 
 describe('utils/format', () => {

@@ -1,4 +1,3 @@
-// Test 1: App muestra el título de la pokédex en español
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../components/App';

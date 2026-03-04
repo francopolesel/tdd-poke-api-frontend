@@ -1,4 +1,3 @@
-// src/components/App.jsx
 import { useState, useEffect, useCallback } from 'react';
 import '../styles/App.css';
 import {
@@ -45,7 +44,7 @@ export default function App() {
 
         setPokemon(detalles);
       } catch (err) {
-        setError('¡Algo salió mal! No pudimos cargar los pokémon. Intentá de nuevo más tarde, che.');
+        setError('No se pudieron cargar los datos. Intentá de nuevo más tarde.');
       } finally {
         setCargando(false);
       }
@@ -103,7 +102,7 @@ export default function App() {
         setPokemon(detalles);
       }
     } catch (err) {
-      setError('¡Algo salió mal! No pudimos cargar los pokémon. Intentá de nuevo más tarde, che.');
+      setError('No se pudieron cargar los datos. Intentá de nuevo más tarde.');
     } finally {
       setCargando(false);
     }
@@ -139,7 +138,7 @@ export default function App() {
       <header className="app__header">
         <h1>Pokédex Argentina</h1>
         <p className="app__subtitle">
-          ¡Bienvenido a la pokédex más copada! Buscá y filtrá tus pokémon favoritos.
+          Buscá y filtrá pokémon por tipo, generación o nombre.
         </p>
       </header>
 
@@ -156,7 +155,7 @@ export default function App() {
         <section className="app__contenido">
           {cargando && (
             <div className="app__loading">
-              <p>Cargando pokémon... ¡Ya llegan!</p>
+              <p>Cargando pokémon...</p>
             </div>
           )}
           {error && (

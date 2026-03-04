@@ -1,4 +1,3 @@
-// Test 2 y 3: API client — getTypes() y getGenerations() con fetch mockeado
 import '@testing-library/jest-dom';
 
 // Mockeamos fetch global

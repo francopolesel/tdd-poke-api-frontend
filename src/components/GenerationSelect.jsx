@@ -1,4 +1,3 @@
-// src/components/GenerationSelect.jsx
 import { capitalizar } from '../utils/format';
 
 export default function GenerationSelect({ generaciones, onChange }) {

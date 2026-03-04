@@ -1,4 +1,3 @@
-// Test 10: Loading state se muestra mientras se espera respuesta
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../components/App';

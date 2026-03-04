@@ -1,6 +1,3 @@
-// src/utils/format.js
-// Helpers de formato para la Pokédex
-
 /**
  * Capitaliza la primera letra de un string.
  * Ej: "pikachu" → "Pikachu"

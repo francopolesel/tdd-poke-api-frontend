@@ -1,4 +1,3 @@
-// Test 4: TypeSelect muestra opciones y dispara onChange
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';

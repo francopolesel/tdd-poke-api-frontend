@@ -1,6 +1,3 @@
-// src/api/pokeApi.js
-// Cliente para la PokeAPI — consume endpoints públicos (sin API key)
-
 const BASE_URL = 'https://pokeapi.co/api/v2';
 
 /**
