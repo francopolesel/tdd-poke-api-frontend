@@ -1,11 +1,3 @@
-# Pokédex Argentina — Proyecto TDD 🇦🇷
-
-> **Materia:** Programación de Nuevas Tecnologías (PNT)
-> **Metodología:** Test-Driven Development (Red → Green → Refactor)
-> **Stack:** React 18 + Vite + Jest + React Testing Library
-
----
-
 ## Objetivo del Proyecto
 
 Crear una **pokédex / tienda de pokémon** como aplicación frontend (solo UI) consumiendo

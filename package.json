@@ -8,9 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand --coverage",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --runInBand --coverage",
     "lint": "eslint . --ext .js,.jsx"
   },
   "keywords": [
