@@ -1,5 +1,5 @@
 /** @type {import('jest').Config} */
-export default {
+module.exports = {
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
   moduleNameMapper: {
@@ -9,7 +9,7 @@ export default {
   transform: {
     '^.+\\.[jt]sx?$': 'babel-jest',
   },
-  setupFilesAfterSetup: ['<rootDir>/src/tests/setupTests.js'],
+  setupFilesAfterEnv: ['<rootDir>/src/tests/setupTests.js'],
   transformIgnorePatterns: ['/node_modules/'],
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
